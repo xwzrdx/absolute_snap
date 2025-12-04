@@ -1,7 +1,7 @@
 # Absolute Snap Blender Add-On 
 
 
-Added Support for Blender 5.0 since Python changes broke it.
+Added Support for Blender 5.0 since Python changes broke the constraints logic.
 
 
 
