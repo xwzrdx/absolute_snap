@@ -22,7 +22,7 @@ NB_eval_message = '' # For the evaluation error message
 
 ##### Functions #####
 
-
+#wzrd: new function
 def get_action_fcurves(action):
     """Return fcurves from an Action, supporting both legacy and Blender 5+ layered actions."""
     if not action:
@@ -30,7 +30,7 @@ def get_action_fcurves(action):
 
     fcurves = []
 
-    # New layered/slotted actions (Blender 4.4+ / 5.x)
+    # New layered/slotted actions
     layers = getattr(action, "layers", None)
     if layers:
         for layer in layers:
@@ -43,13 +43,14 @@ def get_action_fcurves(action):
     if fcurves:
         return fcurves
 
-    # Legacy API (pre-5.0)
+    # Legacy API (pre-5.0 im pretty sure lol) 
     legacy_fcurves = getattr(action, "fcurves", None)
     if legacy_fcurves is not None:
         return list(legacy_fcurves)
 
     return []
 
+#####
 
 
 # Return true if the given object is in pose mode
@@ -190,7 +191,7 @@ def constraint_list_items(scene, context):
                 frame = bpy.context.scene.frame_current
                 action = con.id_data.animation_data.action
                 if action is not None:
-                    fcurves = get_action_fcurves(action)
+                    fcurves = get_action_fcurves(action) #wzrd: instead of fcurves = con.id_data.animation_data.action.fcurves
                     for fcurve in fcurves:
                         if fcurve.data_path == fcurve_name:
                             icon = 'DECORATE_ANIMATE'
@@ -851,7 +852,7 @@ class UNKEY_ALL(bpy.types.Operator):
                     frame = bpy.context.scene.frame_current
                     action = con.id_data.animation_data.action
                     if action is not None:
-                        fcurves = get_action_fcurves(action)
+                        fcurves = get_action_fcurves(action) #wzrd: instead of fcurves = con.id_data.animation_data.action.fcurves
                         for fcurve in fcurves:
                             if fcurve.data_path == fcurve_name:
                                 for keyframe in fcurve.keyframe_points:
